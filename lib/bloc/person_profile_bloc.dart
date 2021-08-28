@@ -13,7 +13,7 @@ part 'person_profile_state.dart';
 class PersonProfileBloc extends Bloc<PersonProfileEvent, PersonProfileState> {
   PersonProfileBloc() : super(const PersonProfileState.initialized());
   /// for save new information (Because no API to post new data)
-  PersonProfile testPersonProfileList;
+  PersonProfile personProfileListBloc;
 
   @override
   Stream<PersonProfileState> mapEventToState(
@@ -23,18 +23,15 @@ class PersonProfileBloc extends Bloc<PersonProfileEvent, PersonProfileState> {
       /// Mock get data from API
       PersonProfile personProfileList = await PersonProfileRepo().GetPersonProfileList();
       /// for save new information (Because no API to post new data)
-      testPersonProfileList = personProfileList;
-      yield PersonProfileState.personProfileList(personProfileList: testPersonProfileList);
+      personProfileListBloc = personProfileList;
+      yield PersonProfileState.personProfileList(personProfileList: personProfileListBloc);
     }
     if(event is GetPersonProfileDetail){
       yield PersonProfileState.personProfileDetail(personProfileDetail: event.personProfileDetail,index:event.index);
     }
     if(event is SavePersonProfile){
-      testPersonProfileList.profile[event.index].name = event.personProfileDetail.name;
-      testPersonProfileList.profile[event.index].email = event.personProfileDetail.email;
-      testPersonProfileList.profile[event.index].birthDate = event.personProfileDetail.birthDate;
-      testPersonProfileList.profile[event.index].address = event.personProfileDetail.address;
-      yield PersonProfileState.personProfileList(personProfileList: testPersonProfileList);
+      personProfileListBloc.profile[event.index] = event.personProfileDetail;
+      yield PersonProfileState.personProfileList(personProfileList: personProfileListBloc);
     }
   }
 }
