@@ -1,11 +1,11 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'no5.dart';
-import 'no6.dart';
+import 'No5.dart';
+import 'No6.dart';
+import 'No7.dart';
+import 'bloc/person_profile_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key key, @required this.title}) : super(key: key);
 
   final String title;
 
@@ -54,11 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
                 "1. numbers from 1 to 100. But for multiples of three print “Fizz” and for the multiples of five print “Buzz”. For numbers which are multiples of both print ”FizzBuzz” "),
-            Center(child: ElevatedButton(onPressed: () => no1(), child: Text('No.1'))),
+            Center(
+                child: ElevatedButton(
+                    onPressed: () => no1(), child: Text('No.1'))),
             SizedBox(
               height: 10,
             ),
-            Text("2. Write a program that determine whether or not an integer input is a leap year."),
+            Text(
+                "2. Write a program that determine whether or not an integer input is a leap year."),
             Container(
               // height: 50,
               width: double.maxFinite,
@@ -96,7 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 10,
             ),
-            Text("3. Write a program that produce the following output giving an integer input n"),
+            Text(
+                "3. Write a program that produce the following output giving an integer input n"),
             Container(
               height: 50,
               width: double.maxFinite,
@@ -199,7 +203,8 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 10,
             ),
-            Text("4. Write a program that finds all prime numbers up to n for input n"),
+            Text(
+                "4. Write a program that finds all prime numbers up to n for input n"),
             Container(
               height: 50,
               width: double.maxFinite,
@@ -250,8 +255,19 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 10,
             ),
-            Text("7. Create a small app that has 2 pages (Person page and Edit Profile page)"),
-            ElevatedButton(onPressed: () {}, child: Text('No.7')),
+            Text(
+                "7. Create a small app that has 2 pages (Person page and Edit Profile page)"),
+            ElevatedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (_) => PersonProfileBloc(),
+                      child: No7(),
+                    ),
+                  ),
+                ),
+                child: Text('No.7')),
             // Text(
             //   'You have pushed the button this many times:',
             // ),

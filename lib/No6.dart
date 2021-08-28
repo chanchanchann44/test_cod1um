@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'configs/BoxTheme.dart';
+
 class No6 extends StatefulWidget {
-  const No6({Key? key}) : super(key: key);
+  const No6({Key key}) : super(key: key);
 
   @override
   _No6State createState() => _No6State();
@@ -56,19 +58,13 @@ class _No6State extends State<No6> {
                       width: 300,
                       child: TextField(
                         style: TextStyle(fontSize: 16, color: Colors.white),
-                        decoration: InputDecoration(
+                        decoration: BoxTheme.textFieldUserNamePassword.copyWith(
+                          hintText: "Username",
                           prefixIcon: Icon(
                             Icons.person,
                             color: Colors.white,
                             size: 20,
                           ),
-                          hintStyle:
-                              TextStyle(fontSize: 16, color: Colors.white38),
-                          focusedBorder: borderStyle,
-                          disabledBorder: enableBorderStyle,
-                          enabledBorder: enableBorderStyle,
-                          border: enableBorderStyle,
-                          hintText: "Username",
                         ),
                         controller: _userNameController,
                         autofocus: true,
@@ -82,7 +78,7 @@ class _No6State extends State<No6> {
                       child: TextField(
                         style: TextStyle(fontSize: 16, color: Colors.white),
                         obscureText: _obscurePwd,
-                        decoration: InputDecoration(
+                        decoration: BoxTheme.textFieldUserNamePassword.copyWith(
                           suffixIcon: GestureDetector(
                             onTap: () {
                               //change visibility
@@ -107,10 +103,6 @@ class _No6State extends State<No6> {
                               TextStyle(fontSize: 16, color: Colors.white38),
                           labelStyle:
                               TextStyle(fontSize: 16, color: Colors.white),
-                          focusedBorder: borderStyle,
-                          disabledBorder: enableBorderStyle,
-                          enabledBorder: enableBorderStyle,
-                          border: enableBorderStyle,
                           hintText: "Password",
                         ),
                         controller: _passwordController,
@@ -142,7 +134,8 @@ class _No6State extends State<No6> {
                             },
                             child: Text(
                               'Login',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white),
                             ))),
                   ],
                 ),
