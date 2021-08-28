@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class PersonProfileRepo {
 
-  Future<PersonProfile> GetPersonProfileList() async {
+  Future<PersonProfile> getPersonProfileList() async {
     final String response = await rootBundle.loadString('assets/profile.json');
 
     return personProfileFromJson(response);

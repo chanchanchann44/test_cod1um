@@ -21,7 +21,7 @@ class PersonProfileBloc extends Bloc<PersonProfileEvent, PersonProfileState> {
   ) async* {
     if (event is GetPersonProfileList) {
       /// Mock get data from API
-      PersonProfile personProfileList = await PersonProfileRepo().GetPersonProfileList();
+      PersonProfile personProfileList = await PersonProfileRepo().getPersonProfileList();
       /// for save new information (Because no API to post new data)
       personProfileListBloc = personProfileList;
       yield PersonProfileState.personProfileList(personProfileList: personProfileListBloc);
